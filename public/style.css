@@ -1,56 +1,129 @@
-/* this file is loaded by index.html and styles the page */
-
 * {
-  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: pan-x pan-y;
 }
 
 body {
-  font-family: sans-serif;
-  margin: 2em 1em;
-  line-height: 1.5em;
+  overflow: hidden;
+  background-color: darkgray;
+  image-rendering: pixelated;
+  background: url('https://cdn.glitch.com/54da81a8-01a7-43bc-8a98-779173df2147%2Fbackground.jpg?v=1587586808184');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: arial;
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
-  max-width: calc(100% - 5rem);
-  line-height: 1.1;
+html {
+  position: fixed;
+  top: 0;
 }
 
-form {
-  background-color: #eee;
-  display: grid;
-  grid-gap: 1em;
-  padding: 1em;
-  max-width: 40ch;
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
-input {
-  border: 1px solid silver;
-  display: block;
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-}
+@import compass
 
-form button {
-  background-color: #bbbbf2;
-  border: 2px solid currentColor;
-  border-radius: .25em;
-  cursor: pointer;
-  font-size: inherit;
-  line-height: 1.4em;
-  padding: 0.25em 1em;
-  max-width: 20ch;
-}
 
-form button:hover {
-  background-color: lavender;
-}
+// n is number of stars required
+@function multiple-box-shadow ($n) 
+  $value: '#{random(2000)}px #{random(2000)}px #FFF'
+  @for $i from 2 through $n
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF'
 
-footer {
-  margin-top: 3em;
-  padding-top: 1.5em;
-  border-top: 1px solid lightgrey;
-}
+  @return unquote($value)
+
+$shadows-small:  multiple-box-shadow(700)
+$shadows-medium: multiple-box-shadow(200)
+$shadows-big:    multiple-box-shadow(100)
+
+html
+  height: 100%
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)
+  overflow: hidden
+    
+#stars
+  width: 1px
+  height: 1px
+  background: transparent
+  box-shadow: $shadows-small
+  animation			: animStar 50s linear infinite
+    
+  &:after
+    content: " "
+    position: absolute
+    top: 2000px
+    width: 1px
+    height: 1px
+    background: transparent
+    box-shadow: $shadows-small
+    
+#stars2
+  width: 2px
+  height: 2px
+  background: transparent
+  box-shadow: $shadows-medium
+  animation			: animStar 100s linear infinite
+    
+  &:after
+    content: " "
+    position: absolute
+    top: 2000px
+    width: 2px
+    height: 2px
+    background: transparent
+    box-shadow: $shadows-medium
+    
+#stars3
+  width: 3px
+  height: 3px
+  background: transparent
+  box-shadow: $shadows-big
+  animation			: animStar 150s linear infinite
+    
+  &:after
+    content: " "
+    position: absolute
+    top: 2000px
+    width: 3px
+    height: 3px
+    background: transparent
+    box-shadow: $shadows-big
+
+#title
+  position: absolute
+  top: 50%
+  left: 0
+  right: 0
+  
+  color: #FFF
+  text-align: center
+  font-family: 'lato',sans-serif
+  font-weight: 300
+  font-size: 50px
+  letter-spacing: 10px
+  
+  margin-top: -60px
+  padding-left: 10px
+  
+  span
+    background: -webkit-linear-gradient(white, #38495a)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    
+@keyframes animStar
+  from	
+    transform: translateY(0px)
+  to		
+    transform: translateY(-2000px)
+    
