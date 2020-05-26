@@ -36,11 +36,11 @@ h1 {
   margin: 0;
   padding: 0;
 	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
-  filter:hue-rotate(160deg);
+  filter:hue-rotate(320deg);
   	-webkit-background-clip: text;
 	background-size: contain;
 	color: transparent;
-	font-size: 10rem;
+	font-size: 1000%;
 	font-family: 'frozen', serif;
 }
 
@@ -50,7 +50,7 @@ h1::before {
 		left: 0;
 		bottom: 0%;
 		width: 100%;
-		background: linear-gradient(45deg, rgba(255,255,255,0) 45%,rgba(255,255,255,0.8) 50%,rgba(255,255,255,0) 55%,rgba(255,255,255,0) 100%);
+		background: linear-gradient(-45deg, rgba(255,255,255,0) 45%,rgba(255,255,255,0.8) 50%,rgba(255,255,255,0) 55%,rgba(255,255,255,0) 100%);
 		-webkit-background-clip: text;
 		color: transparent;
 		mix-blend-mode: screen;
