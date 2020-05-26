@@ -25,9 +25,9 @@ io.sockets.on('connection', function(socket){
     socket.join(room);
     io.in(room).clients((error, clients) => {
       if (error) throw error;
-      clients.foreach(client => {
-        
-      });
+      for (let i = 0; i < clients.length; i++) {
+        clients[i] = { id: clients[i], name: io.sockets.connected[clients[i]].name };
+      }
       returnUsers(clients);
     });
     //returnUsers(io.sockets.adapter.rooms[room].sockets);

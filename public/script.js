@@ -23,6 +23,9 @@ function join(room) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   socket.emit('join', room, user.name, function (others) {
     console.log(others);
+    others.foreach(other => {
+      players.push(other);
+    });
   });
 }
 
