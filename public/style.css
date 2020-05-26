@@ -14,12 +14,6 @@
 body {
   overflow: hidden;
   background-color: black;
-  /*   image-rendering: pixelated;
-  background: url('https://cdn.glitch.com/54da81a8-01a7-43bc-8a98-779173df2147%2Fbackground.jpg?v=1587586808184');
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; */
   font-family: arial;
 }
 
@@ -45,6 +39,8 @@ button {
 }
 
 #create, #join, #profile {
+  position: relative;
+  margin:auto
   width: min(90vw, 30rem);
   margin-top: min(3rem, 10vw, 10vh);
   height: 1.7rem;
