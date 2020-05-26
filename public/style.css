@@ -34,20 +34,22 @@ html, body {
 
 h1 {
 	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
+  -webkit-filter: hue-rotate(10);
   	-webkit-background-clip: text;
 	background-size: contain;
 	color: transparent;
 	font-size: 20vw;
 	font-family: 'frozen', serif;
+}
 
-	&::before {
+h1::before {
+    content: "Battlegrounds";
 		position: absolute;
 		left: 0;
-		top: 0;
+		bottom: 0%;
 		width: 100%;
-    z-index:50;
 		background: linear-gradient(45deg, rgba(255,255,255,0) 45%,rgba(255,255,255,0.8) 50%,rgba(255,255,255,0) 55%,rgba(255,255,255,0) 100%);
-/* 		-webkit-background-clip: text; */
+		-webkit-background-clip: text;
 		color: transparent;
 		mix-blend-mode: screen;
 		animation: shine 1s infinite;
@@ -58,7 +60,6 @@ h1 {
 			-2px 2px 10px rgba(#000, 0.2),
 			-2px -2px 10px rgba(#000, 0.2);
 	}
-}
 
 @font-face {
 	font-family:'frozen'; 
