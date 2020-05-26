@@ -22,7 +22,6 @@ io.sockets.on('connection', function(socket){
   });
   
   socket.on('join', (room, username, returnUsers) => {
-    socket.join(room);
     io.in(room).clients((error, clients) => {
       if (error) throw error;
       for (let i = 0; i < clients.length; i++) {
@@ -30,7 +29,7 @@ io.sockets.on('connection', function(socket){
       }
       returnUsers(clients);
     });
-    //returnUsers(io.sockets.adapter.rooms[room].sockets);
+    socket.join(room);
     socket.to(room).emit('userJoined', socket.id, username);
   });
   

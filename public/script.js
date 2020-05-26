@@ -1,18 +1,11 @@
-var user = JSON.parse(localStorage.getItem('user'));
-if (user == null) {
-  user = { name: "Harry Potter" };
-  localStorage.setItem('user', JSON.stringify(user));
-}
-const canvas = document.getElementById('canvas');
-function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight); console.log("resized canvas width: " + canvas.width); }
-window.onresize = () => { resize(); };
-const ctx = canvas.getContext('2d');
-const socket = io();
-
 socket.on('connect', () => {
   console.log("SID: " + socket.id);
   if (location.hash != "") join(location.hash.substr(1));
   socket.emit('setName', user.name);
+});
+
+socket.on('userJoined', (id, name) => {
+  players.push({id: id, name: name});
 });
 
 function join(room) {
@@ -22,10 +15,7 @@ function join(room) {
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   socket.emit('join', room, user.name, function (others) {
-    console.log(others);
-    others.foreach(other => {
-      players.push(other);
-    });
+    players.concat(others);
   });
 }
 
