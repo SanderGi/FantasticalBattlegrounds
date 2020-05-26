@@ -33,12 +33,14 @@ html, body {
 }
 
 h1 {
+  margin: 0;
+  padding: 0;
 	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
-  -webkit-filter: hue-rotate(10);
+  filter:hue-rotate(160deg);
   	-webkit-background-clip: text;
 	background-size: contain;
 	color: transparent;
-	font-size: 20vw;
+	font-size: 10rem;
 	font-family: 'frozen', serif;
 }
 
@@ -53,7 +55,6 @@ h1::before {
 		color: transparent;
 		mix-blend-mode: screen;
 		animation: shine 1s infinite;
-    -webkit-animation: shine 1s infinite;
 		background-size: 200%;
 		text-shadow: 
 			2px 2px 10px rgba(#000, 0.2),
@@ -68,11 +69,6 @@ h1::before {
 
 @keyframes shine {
 	0% {background-position: -100%;}
-	100% {background-position: 100%;}
-}
-
-@-webkit-keyframes shine {
-  0% {background-position: -100%;}
 	100% {background-position: 100%;}
 }
 
