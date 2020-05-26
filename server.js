@@ -23,7 +23,14 @@ io.sockets.on('connection', function(socket){
   
   socket.on('join', (room, username, returnUsers) => {
     socket.join(room);
-    returnUsers(io.sockets.clients('room'));
+    io.in(room).clients((error, clients) => {
+      if (error) throw error;
+      clients.foreach(client => {
+        
+      });
+      returnUsers(clients);
+    });
+    //returnUsers(io.sockets.adapter.rooms[room].sockets);
     socket.to(room).emit('userJoined', socket.id, username);
   });
   
@@ -33,8 +40,7 @@ io.sockets.on('connection', function(socket){
   });
 });
 
-// var clients = io.sockets.clients();
-// var clients = io.sockets.clients('room'); // all users from room `room`
+// io.sockets.adapter.rooms['room'].sockets // all users from room `room`
 
 //   socket.emit('hello', 'can you hear me?', 1, 2, 'abc'); // sending to the client
 //   socket.broadcast.emit('broadcast', 'hello friends!'); // sending to all clients except sender

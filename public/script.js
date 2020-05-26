@@ -21,7 +21,7 @@ function join(room) {
   document.getElementById('game').style.display = 'block';
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  socket.emit('join', room, user.name, (others) => {
+  socket.emit('join', room, user.name, function (others) {
     console.log(others);
   });
 }
