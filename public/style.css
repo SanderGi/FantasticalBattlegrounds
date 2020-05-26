@@ -39,10 +39,10 @@ button {
 }
 
 #create, #join, #profile {
-  position: relative;
-  margin:auto
+  margin:0 auto;
+  display:block;
   width: min(90vw, 30rem);
-  margin-top: min(3rem, 10vw, 10vh);
+  margin-top: min(1.2rem, 8vw, 8vh);
   height: 1.7rem;
   border-radius: 15px;
 }
