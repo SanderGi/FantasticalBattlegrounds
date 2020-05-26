@@ -33,6 +33,20 @@ html, body {
     height: 100%;
 }
 
+button {
+  transform: skew(-45deg);
+  padding: auto;
+}
+
+button
+
+#create, #join {
+  width: min(90vw, 30rem);
+  margin-top: 1rem;
+  height: 1.5rem;
+  border-radius: 15px;
+}
+
 h1 {
   letter-spacing: normal;
 	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
