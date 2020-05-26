@@ -18,6 +18,9 @@ class World {
     this.height = height;
     
     this.tiles = [];
+    while (height--) {
+        this.tiles.push(new Array(width).fill(0));
+    }
     this.buildings = [];
     this.units = [];
   }
