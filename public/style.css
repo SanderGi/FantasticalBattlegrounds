@@ -36,14 +36,18 @@ html, body {
 button {
   transform: skew(-45deg);
   background-color: transparent;
-  box-shadow: 0 0 13px rgba(17,241,255, .6) inset;
+  box-shadow: 0 0 1rem rgba(17,241,255, .6) inset;
   padding: auto;
+  border-width: 2px;
+  border-style: outset;
+  border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+  border-image: initial;
 }
 
 #create, #join, #profile {
   width: min(90vw, 30rem);
   margin-top: min(3rem, 10vw, 10vh);
-  height: 1.5rem;
+  height: 1.7rem;
   border-radius: 15px;
 }
 
