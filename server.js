@@ -16,6 +16,10 @@ app.get("/", (request, response) => {
 
 io.sockets.on('connection', function(socket){
   console.log('new connection: ' + socket.id);
+  
+  socket.on('join', (room, username) => {
+    
+  });
 });
 
 // var clients = io.sockets.clients();
