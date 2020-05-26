@@ -15,6 +15,10 @@ const tileSprite = new Image("https://cdn.glitch.com/00742a89-c4d3-4606-baad-f1f
 class World {
   constructor(width, height) {
     this.width = width;
+    this.height = height;
     
+    this.tiles = [];
+    this.buildings = [];
+    this.units = [];
   }
 }
