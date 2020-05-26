@@ -21,10 +21,16 @@
       if(location.protocol == 'http:') location.protocol = 'https:';
     </script>
   </head>
-  <body>
+  <body>    
     <div class="stars"></div>
     <div class="twinkling"></div>
     <div class="clouds"></div>
+    <div style="position: absolute; top: 0; z-index: 4;">
+      <h1>
+        hello
+      </h1>
+    </div>
+    
     
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>
