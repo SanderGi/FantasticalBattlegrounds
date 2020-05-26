@@ -11,12 +11,12 @@ const socket = io();
 
 socket.on('connect', () => {
   console.log("SID: " + socket.id);
-  if (location.hash != "") join(location.hash);
+  if (location.hash != "") join(location.hash.substr(1));
 });
 
 function join(room) {
   console.log('joined ' + room);
-  location.hash = room;
+  location.hash = "";
   document.getElementById('game').style.display = 'block';
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -34,13 +34,15 @@ document.getElementById('join').onclick = () => {
 };
 
 document.getElementById('profile').onclick = () => {
-  var newName = prompt("Please enter your new username.", user.name ? user.name : "Harry Potter");
+  var newName = prompt("Please enter your new username.", (user.name ? user.name : "Harry Potter"));
   if (newName != null) {
     user.name = newName;
     localStorage.setItem('user', JSON.stringify(user));
   }
 };
 
-window.onbeforeunload = () => {
-  location.hash = "";
-};
+// window.addEventListener("beforeunload", function (e) {
+//   if (gameRunning) {
+//     return "You are in the middle of a game. Are you sure you wanna leave? ";
+//   }
+// });
