@@ -19,9 +19,21 @@ class World {
     
     this.tiles = [];
     while (height--) {
-        this.tiles.push(new Array(width).fill(0));
+        this.tiles.push(new Array(width).fill({v: 0, s: 3}));
     }
     this.buildings = [];
     this.units = [];
+  }
+  
+  show() {
+    let screenPos = {};
+    let tile = {};
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        screenPos = this.toScreen(x, y);
+        tile = this.tiles[x, y]
+        this.drawTile(screenPos.x, screenPos.y, );
+      }
+    }
   }
 }
