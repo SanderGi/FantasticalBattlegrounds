@@ -54,7 +54,7 @@ h1::before {
 		-webkit-background-clip: text;
 		color: transparent;
 		mix-blend-mode: screen;
-		animation: shine 1s infinite;
+		animation: shine 4s infinite;
 		background-size: 200%;
 		text-shadow: 
 			2px 2px 10px rgba(#000, 0.2),
@@ -68,8 +68,8 @@ h1::before {
 }
 
 @keyframes shine {
-	0% {background-position: -100%;}
-	100% {background-position: 100%;}
+	-100% {background-position: -100%;}
+	0% {background-position: 100%;}
 }
 
 @keyframes move-twink-back {
