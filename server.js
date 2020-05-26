@@ -17,8 +17,19 @@ app.get("/", (request, response) => {
 io.sockets.on('connection', function(socket){
   console.log('new connection: ' + socket.id);
   
-  socket.on('join', (room, username) => {
-    
+  socket.on('setName', (name) => {
+    socket.name = name;
+  });
+  
+  socket.on('join', (room, username, returnUsers) => {
+    socket.join(room);
+    returnUsers(io.sockets.clients('room'));
+    socket.to(room).emit('userJoined', socket.id, username);
+  });
+  
+  socket.on('leave', (room) => {
+    socket.leave(room);
+    socket.to(room).emit('userLeft', socket.id);
   });
 });
 

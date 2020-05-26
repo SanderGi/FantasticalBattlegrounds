@@ -12,6 +12,7 @@ const socket = io();
 socket.on('connect', () => {
   console.log("SID: " + socket.id);
   if (location.hash != "") join(location.hash.substr(1));
+  socket.emit('setName', user.name);
 });
 
 function join(room) {
@@ -20,6 +21,9 @@ function join(room) {
   document.getElementById('game').style.display = 'block';
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  socket.emit('join', room, user.name, (others) => {
+    console.log(others);
+  });
 }
 
 document.getElementById('create').onclick = () => {
@@ -38,6 +42,7 @@ document.getElementById('profile').onclick = () => {
   if (newName != null) {
     user.name = newName;
     localStorage.setItem('user', JSON.stringify(user));
+    socket.emit('setName', user.name);
   }
 };
 
