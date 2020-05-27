@@ -25,7 +25,6 @@ class World {
   }
   
   show() {
-    
     let screenPos = {};
     let tile;
     for (let y = 0; y < this.height; y++) {
@@ -38,7 +37,14 @@ class World {
   }
   
   drawTile(x, y, status, value) {
-    
+    if (status == TileStatus.UNDISCOVERED) return;
+    if (status == TileStatus.DISCOVERED) ctx.globalAlpha = 0.4;
+    else ctx.globalAlpha = 1;
+    switch (value) {
+      case TileValue.GRASS:
+        ctx.drawImage(tileSprite,80,0,40,20,x,y,width,height);
+        break;
+    }
   }
   
   toScreen(x, y) {
