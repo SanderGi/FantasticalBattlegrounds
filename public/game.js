@@ -19,24 +19,25 @@ class World {
     this.height = height;
     
     this.tiles = new Uint8Array(width * height);
-    this.tiles.fill(TileStatus.UPDATED + TileValue.GRASS);
+    this.tiles.fill(TileStatus.UPDATED | TileValue.GRASS);
     this.buildings = [];
     this.units = [];
   }
   
   show() {
+    
     let screenPos = {};
     let tile;
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
         screenPos = this.toScreen(x, y);
         tile = this.tiles[x * this.width + y];
-        this.drawTile(screenPos.x, screenPos.y, tile);
+        this.drawTile(screenPos.x, screenPos.y, tile & 0xC0, tile & 0x3F);
       }
     }
   }
   
-  drawTile() {
+  drawTile(x, y, status, value) {
     
   }
   
@@ -46,19 +47,18 @@ class World {
 }
 
 const TileStatus = {
-  UNDISCOVERED: 0,
-  DISCOVERED: 85,
-  UPDATED: 170,
-  VALUES: 85
+  UNDISCOVERED: 0x00,
+  DISCOVERED: 0x40,
+  UPDATED: 0x80
 }; Object.freeze(TileStatus);
 
 const TileValue = {
-  SELECTED: 0,
-  EMPTY: 1,
-  GRASS: 2,
-  RAINBOW: 3,
-  TREE: 4,
-  DEADTREE: 5,
-  SAND: 6,
-  WATER: 7
+  SELECTED: 0x00,
+  EMPTY: 0x01,
+  GRASS: 0x02,
+  RAINBOW: 0x03,
+  TREE: 0x04,
+  DEADTREE: 0x05,
+  SAND: 0x06,
+  WATER: 0x07
 }; Object.freeze(TileValue);

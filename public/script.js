@@ -13,10 +13,10 @@ function join(room) {
   location.hash = "";
   document.getElementById('game').style.display = 'block';
   resize();
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
   socket.emit('join', room, user.name, function (others) {
     players.concat(others);
   });
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 document.getElementById('create').onclick = () => {
