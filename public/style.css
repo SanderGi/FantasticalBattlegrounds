@@ -49,7 +49,7 @@ button {
 
 h1 {
   letter-spacing: normal;
-	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
+	background: url("https://cdn.glitch.com/00742a89-c4d3-4606-baad-f1fad6586440%2Ffrozen.jpg?v=1590627276601");
   filter:hue-rotate(320deg);
   	-webkit-background-clip: text;
 	background-size: contain;
