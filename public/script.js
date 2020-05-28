@@ -24,7 +24,7 @@ document.getElementById('create').onclick = () => {
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   world = new World(10, 10);
-  world.show();
+  window.requestAnimationFrame(world.loop);
 };
 
 document.getElementById('join').onclick = () => { 

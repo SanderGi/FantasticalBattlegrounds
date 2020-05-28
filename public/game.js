@@ -8,7 +8,7 @@ if (user == null) {
   localStorage.setItem('user', JSON.stringify(user));
 }
 const canvas = document.getElementById('canvas');
-function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight); if (world) { world.originX = (canvas.width - world.tileWidth) / 2; world.show(); } }
+function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight); if (world) world.originX = (canvas.width - world.tileWidth) / 2; }
 window.onresize = () => { resize(); };
 const ctx = canvas.getContext('2d');
 
@@ -19,7 +19,8 @@ canvas.addEventListener('touchstart', (e) => {
 canvas.addEventListener('touchmove', (e) => {
   let current = { x: e.clientX, y: e.clientY };
   if (world) {
-    world.originX += past.x
+    world.originX += current.x - past.x;
+    world.originY += current.y - past.y;
   }
   past = current;
 });
@@ -41,6 +42,15 @@ class World {
     this.tiles.fill(TileStatus.UPDATED | TileValue.GRASS);
     this.buildings = [];
     this.units = [];
+    
+    this.start;
+  }
+  
+  loop(timestamp) {
+    if (!this.start) this.start = timestamp;
+    let progress = timestamp - this.start;
+    this.show();
+    window.requestAnimationFrame(this.loop);
   }
   
   show() {
