@@ -24,7 +24,6 @@ document.getElementById('create').onclick = () => {
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   var world = new World(10, 10);
-  console.log(world);
   world.show();
 };
 

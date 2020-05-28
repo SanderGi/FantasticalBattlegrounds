@@ -10,7 +10,8 @@ function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.
 window.onresize = () => { resize(); };
 const ctx = canvas.getContext('2d');
 
-const tileSprite = new Image("https://cdn.glitch.com/00742a89-c4d3-4606-baad-f1fad6586440%2FisometricTiles.png?v=1590463010897");
+const tileSprite = new Image();
+tileSprite.src = "https://cdn.glitch.com/00742a89-c4d3-4606-baad-f1fad6586440%2FisometricTiles.png?v=1590463010897";
 
 class World {
   constructor(width, height) {
@@ -19,7 +20,7 @@ class World {
     
     this.tileWidth = 40;
     this.tileHeight = 20;
-    this.originX = canvas.width / 2;
+    this.originX = (canvas.width - this.tileWidth) / 2;
     this.originY = 0;
     
     this.tiles = new Uint8Array(width * height);
@@ -45,17 +46,23 @@ class World {
     if (status == TileStatus.DISCOVERED) ctx.globalAlpha = 0.4;
     else ctx.globalAlpha = 1;
     switch (value) {
+      case TileValue.SELECTED:
+        ctx.drawImage(tileSprite,0,0,40,20,x,y,this.tileWidth,this.tileHeight);
+        break;
+      case TileValue.EMPTY:
+        ctx.drawImage(tileSprite,40,0,40,20,x,y,this.tileWidth,this.tileHeight);
+        break; 
       case TileValue.GRASS:
         ctx.drawImage(tileSprite,80,0,40,20,x,y,this.tileWidth,this.tileHeight);
         break;
       default:
-        ctx.drawImage(tileSprite,80,0,40,20,x,y,this.tileWidth,this.tileHeight);
+        ctx.drawImage(tileSprite,120,0,40,20,x,y,this.tileWidth,this.tileHeight);
         break;
     }
   }
   
   toScreen(x, y) {
-    return { x: (x - y) * this.tileWidth / 2, y: (x + y) * this.tileHeight / 2 };
+    return { x: (x - y) * this.tileWidth / 2 + this.originX, y: (x + y) * this.tileHeight / 2 + this.originY };
   }
 }
 
