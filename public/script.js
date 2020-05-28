@@ -23,7 +23,7 @@ document.getElementById('create').onclick = () => {
   document.getElementById('game').style.display = 'block';
   resize();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var world = new World(10, 10);
+  world = new World(10, 10);
   world.show();
 };
 

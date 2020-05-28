@@ -10,6 +10,8 @@ function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.
 window.onresize = () => { resize(); };
 const ctx = canvas.getContext('2d');
 
+var world;
+
 const tileSprite = new Image();
 tileSprite.src = "https://cdn.glitch.com/00742a89-c4d3-4606-baad-f1fad6586440%2FisometricTiles.png?v=1590463010897";
 
@@ -54,6 +56,21 @@ class World {
         break; 
       case TileValue.GRASS:
         ctx.drawImage(tileSprite,80,0,40,20,x,y,this.tileWidth,this.tileHeight);
+        break;
+      case TileValue.RAINBOW:
+        ctx.drawImage(tileSprite,120,0,40,20,x,y,this.tileWidth,this.tileHeight);
+        break;
+      case TileValue.TREE:
+        ctx.drawImage(tileSprite,0,20,40,40,x,y-this.tileHeight,this.tileWidth,this.tileHeight*2);
+        break;
+      case TileValue.DEADTREE:
+        ctx.drawImage(tileSprite,40,20,40,40,x,y-this.tileHeight,this.tileWidth,this.tileHeight*2);
+        break;
+      case TileValue.SAND:
+        ctx.drawImage(tileSprite,80,20,40,20,x,y,this.tileWidth,this.tileHeight);
+        break;
+      case TileValue.WATER:
+        ctx.drawImage(tileSprite,120,20,40,20,x,y,this.tileWidth,this.tileHeight);
         break;
       default:
         ctx.drawImage(tileSprite,120,0,40,20,x,y,this.tileWidth,this.tileHeight);
