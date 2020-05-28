@@ -1,3 +1,5 @@
+var world;
+
 const socket = io();
 var user = JSON.parse(localStorage.getItem('user'));
 var players = [];
@@ -6,11 +8,21 @@ if (user == null) {
   localStorage.setItem('user', JSON.stringify(user));
 }
 const canvas = document.getElementById('canvas');
-function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight); console.log("resized canvas width: " + canvas.width); }
+function resize() { canvas.width = canvas.height * (canvas.clientWidth / canvas.clientHeight); if (world) { world.originX = (canvas.width - world.tileWidth) / 2; world.show(); } }
 window.onresize = () => { resize(); };
 const ctx = canvas.getContext('2d');
 
-var world;
+var past;
+canvas.addEventListener('touchstart', (e) => {
+  past = { x: e.clientX, y: e.clientY };
+});
+canvas.addEventListener('touchmove', (e) => {
+  let current = { x: e.clientX, y: e.clientY };
+  if (world) {
+    world.originX += past.x
+  }
+  past = current;
+});
 
 const tileSprite = new Image();
 tileSprite.src = "https://cdn.glitch.com/00742a89-c4d3-4606-baad-f1fad6586440%2FisometricTiles.png?v=1590463010897";
