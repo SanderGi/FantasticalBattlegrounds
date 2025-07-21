@@ -1,8 +1,8 @@
 // init project
-const express = require('express'); // Express contains some boilerplate to for routing and such
+const express = require("express"); // Express contains some boilerplate to for routing and such
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http); // Here's where we include socket.io as a node module 
+const http = require("http").Server(app);
+const io = require("socket.io")(http); // Here's where we include socket.io as a node module
 
 // make all the files in 'public' available
 app.use(express.static("public"));
@@ -14,28 +14,31 @@ app.get("/", (request, response) => {
   response.sendFile(__dirname + "/public/index.html");
 });
 
-io.sockets.on('connection', function(socket){
-  console.log('new connection: ' + socket.id);
-  
-  socket.on('setName', (name) => {
+io.sockets.on("connection", function (socket) {
+  console.log("new connection: " + socket.id);
+
+  socket.on("setName", (name) => {
     socket.name = name;
   });
-  
-  socket.on('join', (room, username, returnUsers) => {
+
+  socket.on("join", (room, username, returnUsers) => {
     io.in(room).clients((error, clients) => {
       if (error) throw error;
       for (let i = 0; i < clients.length; i++) {
-        clients[i] = { id: clients[i], name: io.sockets.connected[clients[i]].name };
+        clients[i] = {
+          id: clients[i],
+          name: io.sockets.connected[clients[i]].name,
+        };
       }
       returnUsers(clients);
     });
     socket.join(room);
-    socket.to(room).emit('userJoined', socket.id, username);
+    socket.to(room).emit("userJoined", socket.id, username);
   });
-  
-  socket.on('leave', (room) => {
+
+  socket.on("leave", (room) => {
     socket.leave(room);
-    socket.to(room).emit('userLeft', socket.id);
+    socket.to(room).emit("userLeft", socket.id);
   });
 });
 
@@ -54,7 +57,7 @@ io.sockets.on('connection', function(socket){
 //   socket.compress(false).emit('uncompressed', "that's rough"); // sending without compression
 //   socket.volatile.emit('maybe', 'do you really need it?'); // sending a message that might be dropped if the client is not ready to receive messages
 //   socket.binary(false).emit('what', 'I have no binaries!'); // specifying whether the data to send has binary data
-//   
+//
 //   io.local.emit('hi', 'my lovely babies'); // sending to all clients on this node (when using multiple nodes)
 //   io.emit('an event sent to all connected clients'); // sending to all connected clients
 
@@ -78,7 +81,7 @@ io.sockets.on('connection', function(socket){
 //   response.sendStatus(200);
 // });
 
-app.set('port', (process.env.PORT || 5000));
-http.listen(app.get('port'), function(){
-  console.log('listening on port',app.get('port'));
+app.set("port", process.env.PORT || 3000);
+http.listen(app.get("port"), function () {
+  console.log("listening on port", app.get("port"));
 });
